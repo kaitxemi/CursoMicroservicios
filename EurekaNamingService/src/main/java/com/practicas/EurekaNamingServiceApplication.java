@@ -2,13 +2,13 @@ package com.practicas;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
-@EnableDiscoveryClient
-public class Practica1Application {
+@EnableEurekaServer
+public class EurekaNamingServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Practica1Application.class, args);
+		SpringApplication.run(EurekaNamingServiceApplication.class, args);
 	}
 }
