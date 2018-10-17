@@ -1,7 +1,6 @@
-version: '2'
-networks:
-  appnet:
-  
+version: "2"
+
+      
 services:
   rabbitmq:
     image: rabbitmq:3-management
@@ -10,25 +9,21 @@ services:
     - 5671:5671
     - 15672:15672
     networks:
-    - appnet
+      - appnet
    
   zipkin-server:
     image: openzipkin/zipkin
     container_name: zipkin
-    # Environment settings are defined here https://github.com/openzipkin/zipkin/tree/1.19.0/zipkin-server#environment-variables
     environment:
       - STORAGE_TYPE=mem
       - RABBIT_URI=amqp://rabbitmq
-      # Uncomment to disable scribe
-      # - SCRIBE_ENABLED=false
-      # Uncomment to enable self-tracing
-      # - SELF_TRACING_ENABLED=true
-      # Uncomment to enable debug logging
-      # - JAVA_OPTS=-Dlogging.level.zipkin=DEBUG
     depends_on:
       - rabbitmq
     networks:
       - appnet
+    restart: always
     ports:
       # Port used for the Zipkin UI and HTTP Api
     - 9411:9411
+networks:
+  appnet:
